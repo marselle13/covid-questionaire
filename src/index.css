@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'bg-arial';
+    src: url('./fonts/bpg_arial_2009.ttf') format('truetype');
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'bg-arial', sans-serif;
+    background: #EAEAEA;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+}
