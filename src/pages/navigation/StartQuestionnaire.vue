@@ -1,12 +1,13 @@
 <template>
-  <div class="grid justify-items-center content-center h-screen text-center gap-y-24">
-    <transition name="logo" @afterEnter="delayButtonTransition" appear>
-      <RedberryIcon></RedberryIcon>
+  <div
+    class="overflow-hidden grid justify-items-center content-center h-screen text-center gap-y-24"
+  >
+    <transition name="logo" appear>
+      <ElementTransition></ElementTransition>
     </transition>
     <div class="relative flex justify-center">
-      <transition name="button">
+      <transition name="button" appear>
         <router-link
-          v-if="showButton"
           :to="{ name: 'personal-information' }"
           class="text-shadow-start absolute text-3xl font-bold"
           >კითხვარის <br />
@@ -18,16 +19,7 @@
 </template>
 
 <script setup>
-import RedberryIcon from '@/pages/components/icons/RedberryIcon.vue'
-import { ref } from 'vue'
-
-const showButton = ref(false)
-
-function delayButtonTransition() {
-  setTimeout(() => {
-    showButton.value = true
-  }, 600)
-}
+import ElementTransition from '@/pages/components/layout/ElementTransition.vue'
 </script>
 
 <style>
@@ -40,7 +32,7 @@ function delayButtonTransition() {
 }
 
 .logo-enter-active {
-  transition: all 0.3s ease-in;
+  transition: all 0.3s ease-out;
 }
 
 .logo-enter-to {
@@ -53,7 +45,8 @@ function delayButtonTransition() {
 }
 
 .button-enter-active {
-  transition: all 0.5s ease-out;
+  transition: all 1s ease-out;
+  transition-delay: 1s;
 }
 
 .button-enter-to {
