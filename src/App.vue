@@ -24,3 +24,6 @@
   opacity: 1;
 }
 </style>
+<script setup>
+import ElementTransition from '@/pages/components/layout/ElementTransition.vue'
+</script>

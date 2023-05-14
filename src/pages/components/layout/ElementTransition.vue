@@ -1,17 +1,24 @@
 <template>
   <transition name="element" mode="out-in" appear>
-    <RedberryIcon v-if="currentPage === '/'"></RedberryIcon>
+    <RedberryIcon v-if="currentPage === '/'" key="redberryIcon"></RedberryIcon>
     <img
       v-else-if="currentPage === '/personal'"
       :src="Rectangle"
       alt="rectangle"
       class="top-[230px] absolute"
     />
+    <img
+      v-else-if="currentPage === '/condition'"
+      :src="Circle"
+      alt="Circle"
+      class="top-[260px] left-[80px] absolute"
+    />
   </transition>
 </template>
 <script setup>
 import RedberryIcon from '@/pages/components/icons/RedberryIcon.vue'
 import Rectangle from '@/assets/rectangle.png'
+import Circle from '@/assets/circle.png'
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
 const route = useRoute()
@@ -33,5 +40,15 @@ const currentPage = computed(() => {
 
 .element-enter-to {
   transform: scaleX(1);
+}
+
+.logo-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: 0;
 }
 </style>

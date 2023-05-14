@@ -28,11 +28,11 @@ import ElementTransition from '@/pages/components/layout/ElementTransition.vue'
 }
 
 .logo-enter-from {
-  transform: scale(30);
+  transform: scale(28);
 }
 
 .logo-enter-active {
-  transition: all 0.3s ease-out;
+  transition: all 0.6s ease-out;
 }
 
 .logo-enter-to {
@@ -46,7 +46,7 @@ import ElementTransition from '@/pages/components/layout/ElementTransition.vue'
 
 .button-enter-active {
   transition: all 1s ease-out;
-  transition-delay: 1s;
+  transition-delay: 1.5s;
 }
 
 .button-enter-to {
