@@ -6,7 +6,7 @@
         <covid-question question="გაქვს გადატანილი Covid-19?*">
           <base-radio option="covid_yes" value="yes">კი</base-radio>
           <base-radio option="covid_no" value="no">არა</base-radio>
-          <base-radio option="covid_now" value="now">ახლა მაქვს</base-radio>
+          <base-radio option="covid_now" value="have_right_now">ახლა მაქვს</base-radio>
         </covid-question>
 
         <covid-question question="ანტისხეულების ტესტი გაქვს გაკეთებული?*">
@@ -22,15 +22,15 @@
         </covid-question>
       </form>
       <section class="flex-shrink-0">
-        <div class="relative flex">
+        <div class="flex relative">
           <img :src="ConditionImage" alt="image" class="z-10" />
           <ElementTransition></ElementTransition>
-          <div class="absolute bottom-0 left-12 flex items-center gap-28 pb-10 z-10">
-            <router-link :to="{ name: 'personal-information' }"><BackPage /></router-link>
-            <router-link :to="{ name: 'covid-vaccinated' }"><NextPage /></router-link>
-          </div>
         </div>
       </section>
+    </div>
+    <div class="absolute bottom-0 flex w-full justify-center items-center gap-28 pb-10 z-10">
+      <router-link :to="{ name: 'personal-information' }"><BackPage /></router-link>
+      <router-link :to="{ name: 'covid-vaccinated' }"><NextPage /></router-link>
     </div>
   </base-wrapper>
 </template>

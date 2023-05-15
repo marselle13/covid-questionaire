@@ -15,11 +15,11 @@
         <div class="relative flex justify-center">
           <img :src="PersonalImage" alt="image" class="z-10" />
           <ElementTransition></ElementTransition>
-          <div class="absolute -bottom-16 left-32 pb-10 z-10">
-            <router-link :to="{ name: 'covid-condition' }"><NextPage /></router-link>
-          </div>
         </div>
       </section>
+    </div>
+    <div class="relative w-full flex justify-center bottom-0 pb-10 z-10">
+      <router-link :to="{ name: 'covid-condition' }"><NextPage /></router-link>
     </div>
   </base-wrapper>
 </template>

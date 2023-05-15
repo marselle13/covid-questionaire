@@ -10,8 +10,14 @@
     <img
       v-else-if="currentPage === '/condition'"
       :src="Circle"
-      alt="Circle"
+      alt="circle"
       class="top-[260px] left-[80px] absolute"
+    />
+    <img
+      v-else-if="currentPage === '/vaccinated'"
+      :src="Star"
+      alt="star"
+      class="absolute left-[30px]"
     />
   </transition>
 </template>
@@ -19,6 +25,7 @@
 import RedberryIcon from '@/pages/components/icons/RedberryIcon.vue'
 import Rectangle from '@/assets/rectangle.png'
 import Circle from '@/assets/circle.png'
+import Star from '@/assets/star.png'
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
 const route = useRoute()
