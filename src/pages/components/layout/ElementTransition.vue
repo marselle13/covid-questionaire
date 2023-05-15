@@ -19,6 +19,12 @@
       alt="star"
       class="absolute left-[30px]"
     />
+    <img
+      v-else-if="currentPage === '/policy'"
+      :src="Heart"
+      alt="heart"
+      class="absolute left-[100px] top-[60px]"
+    />
   </transition>
 </template>
 <script setup>
@@ -26,6 +32,7 @@ import RedberryIcon from '@/pages/components/icons/RedberryIcon.vue'
 import Rectangle from '@/assets/rectangle.png'
 import Circle from '@/assets/circle.png'
 import Star from '@/assets/star.png'
+import Heart from '@/assets/heart.png'
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
 const route = useRoute()
