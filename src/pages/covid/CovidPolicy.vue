@@ -52,7 +52,9 @@
       </form>
       <section class="flex-shrink-0">
         <div class="flex relative mt-14">
-          <ElementTransition></ElementTransition>
+          <transition name="heart" appear>
+            <img :src="HeartImage" alt="heart" class="absolute left-[100px] top-[65px]" />
+          </transition>
           <img :src="PolicyImage" alt="image" class="z-10" />
         </div>
       </section>
@@ -60,15 +62,30 @@
   </base-wrapper>
 </template>
 <script setup>
-import TheHeader from '@/pages/components/layout/TheHeader.vue'
-import CovidQuestion from '@/pages/components/layout/CovidQuestion.vue'
+import TheHeader from '@/components/layout/TheHeader.vue'
+import CovidQuestion from '@/components/layout/CovidQuestion.vue'
 import PolicyImage from '@/assets/policy.png'
-import ElementTransition from '@/pages/components/layout/ElementTransition.vue'
-import BaseTextarea from '@/pages/components/ui/BaseTextarea.vue'
-import BackPage from '@/pages/components/icons/BackPage.vue'
+import HeartImage from '@/assets/heart.png'
+import BaseTextarea from '@/components/ui/BaseTextarea.vue'
+import BackPage from '@/components/icons/BackPage.vue'
 </script>
 <style scoped>
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+.heart-enter-from {
+  opacity: 0;
+  transform: translateX(-30px) translateY(-60px);
+}
+
+.heart-enter-active {
+  transition: all 0.5s ease-in-out;
+  transform-origin: left;
+}
+
+.heart-enter-to {
+  opacity: 1;
+  transform: scale(1);
 }
 </style>

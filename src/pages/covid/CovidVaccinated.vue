@@ -26,8 +26,10 @@
       </form>
       <section class="flex-shrink-0">
         <div class="flex relative mt-14">
-          <ElementTransition></ElementTransition>
-          <img :src="VaccinatedImage" alt="image" class="z-10" />
+          <transition name="star" appear>
+            <img :src="StarImage" alt="star" class="absolute left-[30px]" />
+          </transition>
+          <img :src="VaccinatedImage" alt="image" class="z-10 bg-opacity-25" />
         </div>
       </section>
     </div>
@@ -38,11 +40,28 @@
   </base-wrapper>
 </template>
 <script setup>
-import TheHeader from '@/pages/components/layout/TheHeader.vue'
-import CovidQuestion from '@/pages/components/layout/CovidQuestion.vue'
-import BaseRadio from '@/pages/components/ui/BaseRadio.vue'
+import TheHeader from '@/components/layout/TheHeader.vue'
+import CovidQuestion from '@/components/layout/CovidQuestion.vue'
+import BaseRadio from '@/components/ui/BaseRadio.vue'
 import VaccinatedImage from '@/assets/vaccinated.png'
-import NextPage from '@/pages/components/icons/NextPage.vue'
-import BackPage from '@/pages/components/icons/BackPage.vue'
-import ElementTransition from '@/pages/components/layout/ElementTransition.vue'
+import StarImage from '@/assets/star.png'
+import NextPage from '@/components/icons/NextPage.vue'
+import BackPage from '@/components/icons/BackPage.vue'
 </script>
+<style scoped>
+.star-enter-from {
+  opacity: 0;
+  transform: translateX(-60px) translateY(200px);
+}
+
+.star-enter-active {
+  transition: all 0.5s ease-out;
+}
+
+.star-enter-to {
+  background-image: url('../../assets/circle.png');
+  background-repeat: no-repeat;
+  opacity: 0.6;
+  transform: translateY(0);
+}
+</style>

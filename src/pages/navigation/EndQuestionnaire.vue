@@ -5,7 +5,7 @@
     </transition>
   </div>
 </template>
-<style>
+<style scoped>
 .thanks-enter-from {
   opacity: 0;
   transform: translateY(-10px);

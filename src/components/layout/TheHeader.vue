@@ -6,5 +6,5 @@
 </template>
 
 <script setup>
-import RedberryText from '@/pages/components/icons/RedberryText.vue'
+import RedberryText from '@/components/icons/RedberryText.vue'
 </script>

@@ -24,7 +24,9 @@
       <section class="flex-shrink-0">
         <div class="flex relative">
           <img :src="ConditionImage" alt="image" class="z-10" />
-          <ElementTransition></ElementTransition>
+          <transition name="circle" appear>
+            <img :src="CircleImage" alt="circle" class="absolute left-[80px] top-[260px]" />
+          </transition>
         </div>
       </section>
     </div>
@@ -35,11 +37,28 @@
   </base-wrapper>
 </template>
 <script setup>
-import TheHeader from '@/pages/components/layout/TheHeader.vue'
-import CovidQuestion from '@/pages/components/layout/CovidQuestion.vue'
-import BaseInput from '@/pages/components/ui/BaseInput.vue'
+import TheHeader from '@/components/layout/TheHeader.vue'
+import CovidQuestion from '@/components/layout/CovidQuestion.vue'
+import BaseInput from '@/components/ui/BaseInput.vue'
 import ConditionImage from '@/assets/condition.png'
-import ElementTransition from '@/pages/components/layout/ElementTransition.vue'
-import NextPage from '@/pages/components/icons/NextPage.vue'
-import BackPage from '@/pages/components/icons/BackPage.vue'
+import CircleImage from '@/assets/circle.png'
+import NextPage from '@/components/icons/NextPage.vue'
+import BackPage from '@/components/icons/BackPage.vue'
 </script>
+<style scoped>
+.circle-enter-from {
+  background: #dd393999;
+  opacity: 0;
+  transform: scaleX(3) scaleY(0.4) translateY(-200px);
+}
+
+.circle-enter-active {
+  transition: all 0.5s ease-in-out;
+  transform-origin: left;
+}
+
+.circle-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>

@@ -3,7 +3,7 @@
     class="overflow-hidden grid justify-items-center content-center h-screen text-center gap-y-24"
   >
     <transition name="logo" appear>
-      <ElementTransition></ElementTransition>
+      <RedberryIcon></RedberryIcon>
     </transition>
     <div class="relative flex justify-center">
       <transition name="button" appear>
@@ -17,11 +17,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import ElementTransition from '@/pages/components/layout/ElementTransition.vue'
-</script>
-
 <style>
 .text-shadow-start:hover {
   text-shadow: #fff 2px 1px, #232323 3px 2px;
@@ -54,3 +49,6 @@ import ElementTransition from '@/pages/components/layout/ElementTransition.vue'
   transform: translateY(0);
 }
 </style>
+<script setup>
+import RedberryIcon from '@/components/icons/RedberryIcon.vue'
+</script>

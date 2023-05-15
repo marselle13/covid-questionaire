@@ -14,7 +14,9 @@
       <section class="flex-shrink-0">
         <div class="relative flex justify-center">
           <img :src="PersonalImage" alt="image" class="z-10" />
-          <ElementTransition></ElementTransition>
+          <transition name="rectangle" appear>
+            <img :src="RectangleImage" alt="rectangle" class="absolute top-[230px]" />
+          </transition>
         </div>
       </section>
     </div>
@@ -24,10 +26,25 @@
   </base-wrapper>
 </template>
 <script setup>
-import TheHeader from '@/pages/components/layout/TheHeader.vue'
-import BaseInput from '@/pages/components/ui/BaseInput.vue'
-import BaseWrapper from '@/pages/components/ui/BaseWrapper.vue'
+import TheHeader from '@/components/layout/TheHeader.vue'
+import BaseInput from '@/components/ui/BaseInput.vue'
+import BaseWrapper from '@/components/ui/BaseWrapper.vue'
 import PersonalImage from '@/assets/personal.png'
-import ElementTransition from '@/pages/components/layout/ElementTransition.vue'
-import NextPage from '@/pages/components/icons/NextPage.vue'
+import RectangleImage from '@/assets/rectangle.png'
+import NextPage from '@/components/icons/NextPage.vue'
 </script>
+<style scoped>
+.rectangle-enter-from {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.rectangle-enter-active {
+  transition: all 0.3s ease-out;
+  transform-origin: left;
+}
+
+.rectangle-enter-to {
+  opacity: 1;
+  transform: scaleX(1);
+}
+</style>
