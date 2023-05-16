@@ -12,6 +12,7 @@ import BaseButton from '@/components/ui/BaseButton.vue'
 import './config/vee-validate/rules'
 import './config/vee-validate/messages'
 import store from '@/store'
+import BackPage from '@/components/icons/BackPage.vue'
 
 const app = createApp(App)
 
@@ -24,5 +25,6 @@ app.component('base-radio', BaseRadio)
 app.component('base-textarea', BaseTextarea)
 app.component('base-button', BaseButton)
 app.component('next-page', NextPage)
+app.component('back-page', BackPage)
 
 app.mount('#app')

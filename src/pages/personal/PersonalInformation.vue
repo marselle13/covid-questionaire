@@ -4,22 +4,22 @@
     <Form @submit="onSubmit" v-slot="{ meta }">
       <div class="flex gap-32">
         <div class="mt-10 w-1/3 space-y-12 flex-shrink-0">
-          <BaseInput rules="required|min:2" placeholder="იოსებ" name="firstname" :value="firstname"
-            >სახელი*</BaseInput
+          <base-input rules="required|min:2" placeholder="იოსებ" name="firstname" :value="firstname"
+            >სახელი*</base-input
           >
-          <BaseInput
+          <base-input
             rules="required|min:2"
             placeholder="ჯუღაშვილი"
             name="lastname"
             :value="lastname"
-            >გვარი*</BaseInput
+            >გვარი*</base-input
           >
-          <BaseInput
+          <base-input
             rules="required|email|redberry_email"
             placeholder="fbi@redberry.ge"
             name="email"
             :value="email"
-            >მეილი*</BaseInput
+            >მეილი*</base-input
           >
           <div class="pt-12 w-1/2 space-y-5">
             <hr class="border border-[#000]" />
@@ -37,7 +37,7 @@
       </div>
       <div class="relative w-full flex justify-center bottom-0 pb-10 z-10">
         <button :disabled="!meta.valid" @click="meta.valid">
-          <NextPage :color="meta.valid ? '#232323' : '#8D8D8D'" />
+          <next-page :color="meta.valid ? '#232323' : '#8D8D8D'" />
         </button>
       </div>
     </Form>
@@ -55,12 +55,9 @@ import { ref } from 'vue'
 const router = useRouter()
 const store = useStore()
 const personalData = store.getters['personal/personal']
-const personalStorage = JSON.parse(localStorage.getItem('personal'))
-
-const firstname = ref(personalStorage.firstname || personalData.firstname)
-const lastname = ref(personalStorage.lastname || personalData.lastname)
-const email = ref(personalStorage.email || personalData.email)
-
+const firstname = ref(personalData.firstname)
+const lastname = ref(personalData.lastname)
+const email = ref(personalData.email)
 function onSubmit(values) {
   store.dispatch('personal/setPersonal', values)
   localStorage.setItem('personal', JSON.stringify(values))

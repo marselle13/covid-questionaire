@@ -39,11 +39,8 @@
 <script setup>
 import TheHeader from '@/components/layout/TheHeader.vue'
 import CovidQuestion from '@/components/layout/CovidQuestion.vue'
-import BaseInput from '@/components/ui/BaseInput.vue'
 import ConditionImage from '@/assets/condition.png'
 import CircleImage from '@/assets/circle.png'
-import NextPage from '@/components/icons/NextPage.vue'
-import BackPage from '@/components/icons/BackPage.vue'
 </script>
 <style scoped>
 .circle-enter-from {
