@@ -28,7 +28,7 @@
 <script setup>
 import TheHeader from '@/components/layout/TheHeader.vue'
 import BaseInput from '@/components/ui/BaseInput.vue'
-import BaseWrapper from '@/components/ui/BaseWrapper.vue'
+import BaseWrapper from '@/components/layout/BaseWrapper.vue'
 import PersonalImage from '@/assets/personal.png'
 import RectangleImage from '@/assets/rectangle.png'
 import NextPage from '@/components/icons/NextPage.vue'

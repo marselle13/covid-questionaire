@@ -17,6 +17,9 @@
     </div>
   </div>
 </template>
+<script setup>
+import RedberryIcon from '@/components/icons/RedberryIcon.vue'
+</script>
 <style>
 .text-shadow-start:hover {
   text-shadow: #fff 2px 1px, #232323 3px 2px;
@@ -49,6 +52,3 @@
   transform: translateY(0);
 }
 </style>
-<script setup>
-import RedberryIcon from '@/components/icons/RedberryIcon.vue'
-</script>
