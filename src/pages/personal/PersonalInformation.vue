@@ -1,37 +1,71 @@
 <template>
   <base-wrapper>
     <TheHeader>1/4</TheHeader>
-    <div class="flex gap-32">
-      <form class="mt-10 w-1/3 space-y-12 flex-shrink-0">
-        <BaseInput placeholder="იოსებ">სახელი*</BaseInput>
-        <BaseInput placeholder="ჯუღაშვილი">გვარი*</BaseInput>
-        <BaseInput placeholder="fbi@redberry.ge">მეილი*</BaseInput>
-        <div class="pt-12 w-1/2 space-y-5">
-          <hr class="border border-[#000]" />
-          <p class="text-[#626262] w-[365px]">*-ით მონიშნული ველების შევსება სავალდებულოა</p>
+    <Form @submit="onSubmit" v-slot="{ meta }">
+      <div class="flex gap-32">
+        <div class="mt-10 w-1/3 space-y-12 flex-shrink-0">
+          <BaseInput rules="required|min:2" placeholder="იოსებ" name="firstname" :value="firstname"
+            >სახელი*</BaseInput
+          >
+          <BaseInput
+            rules="required|min:2"
+            placeholder="ჯუღაშვილი"
+            name="lastname"
+            :value="lastname"
+            >გვარი*</BaseInput
+          >
+          <BaseInput
+            rules="required|email|redberry_email"
+            placeholder="fbi@redberry.ge"
+            name="email"
+            :value="email"
+            >მეილი*</BaseInput
+          >
+          <div class="pt-12 w-1/2 space-y-5">
+            <hr class="border border-[#000]" />
+            <p class="text-[#626262] w-[365px]">*-ით მონიშნული ველების შევსება სავალდებულოა</p>
+          </div>
         </div>
-      </form>
-      <section class="flex-shrink-0">
-        <div class="relative flex justify-center">
-          <img :src="PersonalImage" alt="image" class="z-10" />
-          <transition name="rectangle" appear>
-            <img :src="RectangleImage" alt="rectangle" class="absolute top-[230px]" />
-          </transition>
-        </div>
-      </section>
-    </div>
-    <div class="relative w-full flex justify-center bottom-0 pb-10 z-10">
-      <router-link :to="{ name: 'covid-condition' }"><NextPage /></router-link>
-    </div>
+        <section class="flex-shrink-0">
+          <div class="relative flex justify-center">
+            <img :src="PersonalImage" alt="image" class="z-10" />
+            <transition name="rectangle" appear>
+              <img :src="RectangleImage" alt="rectangle" class="absolute top-[230px]" />
+            </transition>
+          </div>
+        </section>
+      </div>
+      <div class="relative w-full flex justify-center bottom-0 pb-10 z-10">
+        <button :disabled="!meta.valid" @click="meta.valid">
+          <NextPage :color="meta.valid ? '#232323' : '#8D8D8D'" />
+        </button>
+      </div>
+    </Form>
   </base-wrapper>
 </template>
 <script setup>
 import TheHeader from '@/components/layout/TheHeader.vue'
-import BaseInput from '@/components/ui/BaseInput.vue'
-import BaseWrapper from '@/components/layout/BaseWrapper.vue'
 import PersonalImage from '@/assets/personal.png'
 import RectangleImage from '@/assets/rectangle.png'
-import NextPage from '@/components/icons/NextPage.vue'
+import { Form } from 'vee-validate'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+import { ref } from 'vue'
+
+const router = useRouter()
+const store = useStore()
+const personalData = store.getters['personal/personal']
+const personalStorage = JSON.parse(localStorage.getItem('personal'))
+
+const firstname = ref(personalStorage.firstname || personalData.firstname)
+const lastname = ref(personalStorage.lastname || personalData.lastname)
+const email = ref(personalStorage.email || personalData.email)
+
+function onSubmit(values) {
+  store.dispatch('personal/setPersonal', values)
+  localStorage.setItem('personal', JSON.stringify(values))
+  router.push({ name: 'covid-condition' })
+}
 </script>
 <style scoped>
 .rectangle-enter-from {
