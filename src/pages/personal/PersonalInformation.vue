@@ -50,7 +50,7 @@ import RectangleImage from '@/assets/rectangle.png'
 import { Form } from 'vee-validate'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 
 const router = useRouter()
 const store = useStore()

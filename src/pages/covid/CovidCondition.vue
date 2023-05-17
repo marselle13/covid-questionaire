@@ -3,27 +3,20 @@
     <TheHeader>2/4</TheHeader>
     <Form @submit="onSubmit" v-slot="{ meta }">
       <div class="flex">
-        <form class="mt-10 space-y-12 w-[575px]">
+        <div class="mt-10 space-y-12 w-[575px]">
           <covid-question question="გაქვს გადატანილი Covid-19?*">
-            <base-radio name="hadCovid" option="covid_yes" value="yes" v-model="hadCovid"
+            <base-radio name="hadCovid" id="covid_yes" value="yes" v-model="hadCovid"
               >კი</base-radio
             >
-            <base-radio name="hadCovid" option="covid_no" value="no" v-model="hadCovid"
-              >არა</base-radio
-            >
-            <base-radio name="hadCovid" option="covid_now" value="have_right_now" v-model="hadCovid"
+            <base-radio name="hadCovid" id="covid_no" value="no" v-model="hadCovid">არა</base-radio>
+            <base-radio name="hadCovid" id="covid_now" value="have_right_now" v-model="hadCovid"
               >ახლა მაქვს</base-radio
             >
           </covid-question>
           <covid-question question="ანტისხეულების ტესტი გაქვს გაკეთებული?*" v-if="!!hadCovid">
-            <base-radio name="hadTest" option="test_yes" value="true" v-model="hadTest"
-              >კი</base-radio
-            >
-            <base-radio name="hadTest" option="test_no" value="false" v-model="hadTest"
-              >არა</base-radio
-            >
+            <base-radio name="hadTest" id="test_yes" value="true" v-model="hadTest">კი</base-radio>
+            <base-radio name="hadTest" id="test_no" value="false" v-model="hadTest">არა</base-radio>
           </covid-question>
-
           <covid-question
             question="თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და ანტისხეულების რაოდენობა"
             v-if="hadTest === 'true'"
@@ -52,7 +45,7 @@
               rules="required|date_format"
             ></base-input>
           </covid-question>
-        </form>
+        </div>
         <section class="flex relative flex-shrink-0">
           <img :src="ConditionImage" alt="image" class="z-10" />
           <transition name="circle" appear>
@@ -81,6 +74,7 @@ import BaseInput from '@/components/ui/BaseInput.vue'
 
 const router = useRouter()
 const conditionData = store.getters['covid/condition']
+
 const hadCovid = ref(conditionData.hadCovid)
 const hadTest = ref(conditionData.hadTest)
 const sicknessDate = ref(conditionData.sicknessDate)

@@ -8,4 +8,7 @@ export default {
   vaccinated(state) {
     return state.vaccinated
   },
+  policy(state) {
+    return state.policy
+  },
 }

@@ -24,6 +24,10 @@ onMounted(() => {
   if (vaccinatedStorage) {
     store.commit('covid/setVaccinated', vaccinatedStorage)
   }
+  const policyStorage = JSON.parse(localStorage.getItem('policy'))
+  if (policyStorage) {
+    store.commit('covid/setPolicy', policyStorage)
+  }
 })
 </script>
 <style>

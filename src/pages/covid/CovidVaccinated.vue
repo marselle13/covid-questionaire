@@ -3,12 +3,12 @@
     <TheHeader>3/4</TheHeader>
     <Form @submit="onSubmit" v-slot="{ meta }">
       <div class="flex">
-        <form class="mt-10 space-y-12 w-[575px] flex-shrink-0">
+        <div class="mt-10 space-y-12 w-[575px]">
           <covid-question question="უკვე აცრილი ხარ?*">
-            <base-radio v-model="hadVaccine" name="hadVaccine" option="vaccinated_yes" value="true"
+            <base-radio v-model="hadVaccine" name="hadVaccine" id="vaccinated_yes" value="true"
               >კი</base-radio
             >
-            <base-radio v-model="hadVaccine" name="hadVaccine" option="vaccinated_no" value="false"
+            <base-radio v-model="hadVaccine" name="hadVaccine" id="vaccinated_no" value="false"
               >არა</base-radio
             >
           </covid-question>
@@ -16,21 +16,21 @@
             <base-radio
               v-model="vaccinatedStage"
               name="vaccinatedStage"
-              option="vaccinated_second"
+              id="vaccinated_second"
               value="first_dosage_and_registered_on_the_second"
               >პირველი დოზა და დარეგისტრირებული ვარ მეორეზე</base-radio
             >
             <base-radio
               v-model="vaccinatedStage"
               name="vaccinatedStage"
-              option="vaccinated_fully"
+              id="vaccinated_fully"
               value="fully_vaccinated"
               >სრულად აცრილი ვარ</base-radio
             >
             <base-radio
               v-model="vaccinatedStage"
               name="vaccinatedStage"
-              option="vaccinated_first"
+              id="vaccinated_first"
               value="first_dosage_and_not_registered_yet"
               >პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე</base-radio
             >
@@ -39,26 +39,25 @@
             <base-radio
               v-model="waitingStage"
               name="waitingStage"
-              option="waiting"
+              id="waiting"
               value="registered_and_waiting"
               >დარეგისტრირებული ვარ და ველოდები რიცხვს</base-radio
             >
             <base-radio
               v-model="waitingStage"
               name="waitingStage"
-              option="not_planing"
+              id="not_planing"
               value="not_planning"
               >არ ვგეგმავ</base-radio
             >
             <base-radio
               v-model="waitingStage"
               name="waitingStage"
-              option="planing_vaccinated"
+              id="planing_vaccinated"
               value="had_covid_and_planning_to_be_vaccinated"
               >გადატანილი მაქვს და ვგეგმავ აცრას</base-radio
             >
           </covid-question>
-
           <VaccinatedMessage v-if="notRegisteredMessage">
             <template #title>
               რომ არ გადადო, <br />
@@ -72,7 +71,7 @@
             </template>
             <template #linkTitle> 👉 რეგისტრაციის ბმული </template>
           </vaccinated-message>
-        </form>
+        </div>
         <section class="flex-shrink-0">
           <div class="flex relative mt-14">
             <transition name="star" appear>
@@ -128,7 +127,6 @@ const hadCovidMessage = computed(() => {
 })
 
 function onSubmit(values) {
-  console.log(values)
   store.dispatch('covid/setVaccinated', values)
   localStorage.setItem('vaccinated', JSON.stringify(values))
   router.push({ name: 'covid-policy' })

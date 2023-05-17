@@ -23,6 +23,12 @@ export default {
         vaccinatedStage: '',
         waitingStage: '',
       },
+      policy: {
+        meetings: '',
+        officeDays: null,
+        meetingsLive: '',
+        aboutUs: null,
+      },
     }
   },
   mutations,

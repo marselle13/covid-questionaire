@@ -5,12 +5,12 @@
       rules="required"
       type="radio"
       :value="value"
-      :id="option"
+      :id="id"
       v-slot="{ field }"
       v-model="activeOption"
     >
       <input
-        :id="option"
+        :id="id"
         v-bind="field"
         :value="value"
         type="radio"
@@ -18,7 +18,7 @@
         @change="activate(value)"
         :checked="activeOption === value"
       />
-      <label class="text-[#232323] text-xl" :for="option"><slot></slot></label>
+      <label class="text-[#232323] text-xl" :for="id"><slot></slot></label>
     </Field>
   </div>
 </template>
@@ -29,8 +29,8 @@ import { ref } from 'vue'
 const props = defineProps({
   modelValue: { type: String, required: true },
   name: { type: String, required: true },
-  option: { type: String, required: true },
-  value: { type: [String], required: true },
+  id: { type: String, required: true },
+  value: { type: String, required: true },
 })
 const emits = defineEmits(['update:modelValue'])
 
