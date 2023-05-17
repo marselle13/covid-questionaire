@@ -5,4 +5,7 @@ export default {
   setCondition(context, payload) {
     context.commit('setCondition', payload)
   },
+  setVaccinated(context, payload) {
+    context.commit('setVaccinated', payload)
+  },
 }

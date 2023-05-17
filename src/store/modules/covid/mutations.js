@@ -5,4 +5,7 @@ export default {
   setCondition(state, payload) {
     state.condition = payload
   },
+  setVaccinated(state, payload) {
+    state.vaccinated = payload
+  },
 }

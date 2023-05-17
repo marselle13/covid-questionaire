@@ -43,7 +43,7 @@
           </covid-question>
           <covid-question
             question="მიუთითეთ მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა Covid-19*"
-            v-else
+            v-if="hadTest === 'false'"
           >
             <base-input
               placeholder="დდ/თთ/წწ"
@@ -52,7 +52,6 @@
               rules="required|date_format"
             ></base-input>
           </covid-question>
-          {{ meta }}
         </form>
         <section class="flex relative flex-shrink-0">
           <img :src="ConditionImage" alt="image" class="z-10" />
@@ -72,7 +71,6 @@
 </template>
 <script setup>
 import TheHeader from '@/components/layout/TheHeader.vue'
-import CovidQuestion from '@/components/layout/CovidQuestion.vue'
 import ConditionImage from '@/assets/condition.png'
 import CircleImage from '@/assets/circle.png'
 import { Form } from 'vee-validate'
@@ -82,7 +80,7 @@ import { useRouter } from 'vue-router'
 import BaseInput from '@/components/ui/BaseInput.vue'
 
 const router = useRouter()
-const conditionData = store.getters['personal/condition']
+const conditionData = store.getters['covid/condition']
 const hadCovid = ref(conditionData.hadCovid)
 const hadTest = ref(conditionData.hadTest)
 const sicknessDate = ref(conditionData.sicknessDate)
@@ -90,10 +88,9 @@ const testDate = ref(conditionData.testDate)
 const antibodyNumber = ref(conditionData.antibodyNumber)
 
 function onSubmit(values) {
-  store.dispatch('personal/setCondition', values)
-  console.log(values)
+  store.dispatch('covid/setCondition', values)
   localStorage.setItem('condition', JSON.stringify(values))
-  router.push('/vaccinated')
+  router.push({ name: 'covid-vaccinated' })
 }
 </script>
 <style scoped>

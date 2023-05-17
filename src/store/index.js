@@ -1,9 +1,9 @@
 import { createStore } from 'vuex'
-import PersonalModule from '@/store/modules/covid'
+import CovidModule from '@/store/modules/covid'
 
 const store = createStore({
   modules: {
-    personal: PersonalModule,
+    covid: CovidModule,
   },
 })
 

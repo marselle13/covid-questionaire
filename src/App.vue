@@ -14,11 +14,15 @@ const store = useStore()
 onMounted(() => {
   const personalStorage = JSON.parse(localStorage.getItem('personal'))
   if (personalStorage) {
-    store.commit('personal/setPersonal', personalStorage)
+    store.commit('covid/setPersonal', personalStorage)
   }
   const conditionStorage = JSON.parse(localStorage.getItem('condition'))
   if (conditionStorage) {
-    store.commit('personal/setCondition', conditionStorage)
+    store.commit('covid/setCondition', conditionStorage)
+  }
+  const vaccinatedStorage = JSON.parse(localStorage.getItem('vaccinated'))
+  if (vaccinatedStorage) {
+    store.commit('covid/setVaccinated', vaccinatedStorage)
   }
 })
 </script>

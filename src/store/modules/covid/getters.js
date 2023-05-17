@@ -5,4 +5,7 @@ export default {
   condition(state) {
     return state.condition
   },
+  vaccinated(state) {
+    return state.vaccinated
+  },
 }

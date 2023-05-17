@@ -13,6 +13,7 @@ import './config/vee-validate/rules'
 import './config/vee-validate/messages'
 import store from '@/store'
 import BackPage from '@/components/icons/BackPage.vue'
+import CovidQuestion from '@/components/layout/CovidQuestion.vue'
 
 const app = createApp(App)
 
@@ -26,5 +27,6 @@ app.component('base-textarea', BaseTextarea)
 app.component('base-button', BaseButton)
 app.component('next-page', NextPage)
 app.component('back-page', BackPage)
+app.component('covid-question', CovidQuestion)
 
 app.mount('#app')

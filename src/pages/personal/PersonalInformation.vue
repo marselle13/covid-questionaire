@@ -54,13 +54,13 @@ import { onMounted, ref } from 'vue'
 
 const router = useRouter()
 const store = useStore()
-const personalData = store.getters['personal/personal']
+const personalData = store.getters['covid/personal']
 const firstname = ref(personalData.firstname || '')
 const lastname = ref(personalData.lastname || '')
 const email = ref(personalData.email || '')
 
 function onSubmit(values) {
-  store.dispatch('personal/setPersonal', values)
+  store.dispatch('covid/setPersonal', values)
   localStorage.setItem('personal', JSON.stringify(values))
   router.push({ name: 'covid-condition' })
 }

@@ -18,6 +18,11 @@ export default {
         testDate: '',
         antibodyNumber: null,
       },
+      vaccinated: {
+        hadVaccine: '',
+        vaccinatedStage: '',
+        waitingStage: '',
+      },
     }
   },
   mutations,
