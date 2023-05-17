@@ -95,7 +95,7 @@ function onSubmit(values) {
 }
 
 .circle-enter-active {
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   transform-origin: left;
 }
 

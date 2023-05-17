@@ -112,6 +112,7 @@ const hasError = ref(false)
 
 async function onSubmit(values) {
   localStorage.setItem('policy', JSON.stringify(values))
+  await store.dispatch('covid/setPolicy', values)
   try {
     await store.dispatch('covid/sendAnswers')
   } catch (error) {
@@ -134,12 +135,12 @@ async function onSubmit(values) {
 }
 
 .heart-enter-active {
-  transition: all 0.5s ease-in-out;
-  transform-origin: left;
+  transition: all 0.3s ease-in-out;
+  transform-origin: center;
 }
 
 .heart-enter-to {
   opacity: 1;
-  transform: scale(1);
+  transform: scale(1.2);
 }
 </style>
