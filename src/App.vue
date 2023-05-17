@@ -8,10 +8,18 @@
 <script setup>
 import { onMounted } from 'vue'
 import { useStore } from 'vuex'
+
 const store = useStore()
 
 onMounted(() => {
-  store.dispatch('personal/setPersonalFromStorage')
+  const personalStorage = JSON.parse(localStorage.getItem('personal'))
+  if (personalStorage) {
+    store.commit('personal/setPersonal', personalStorage)
+  }
+  const conditionStorage = JSON.parse(localStorage.getItem('condition'))
+  if (conditionStorage) {
+    store.commit('personal/setCondition', conditionStorage)
+  }
 })
 </script>
 <style>

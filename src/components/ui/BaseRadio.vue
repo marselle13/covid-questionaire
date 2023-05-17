@@ -1,28 +1,42 @@
 <template>
   <div class="flex items-center">
-    <input type="radio" :id="option" class="sr-only" :value="value" />
-    <div
-      class="relative w-6 h-6 border border-gray-900 rounded-full cursor-pointer mr-4"
-      @click="toggleCheck"
+    <Field
+      :name="name"
+      rules="required"
+      type="radio"
+      :value="value"
+      :id="option"
+      v-slot="{ field }"
+      v-model="activeOption"
     >
-      <div
-        class="absolute w-4 h-4 m-auto inset-0 rounded-full transition ease-in-out duration-300"
-        :class="{ 'bg-black': checked }"
-      ></div>
-    </div>
-    <label class="text-[#232323] text-xl" :for="option"><slot></slot></label>
+      <input
+        :id="option"
+        v-bind="field"
+        :value="value"
+        type="radio"
+        class="accent-black w-6 h-6 mr-2"
+        @change="activate(value)"
+        :checked="activeOption === value"
+      />
+      <label class="text-[#232323] text-xl" :for="option"><slot></slot></label>
+    </Field>
   </div>
 </template>
 <script setup>
+import { Field } from 'vee-validate'
 import { ref } from 'vue'
-defineProps({
-  option: { type: String, required: true },
-  value: { type: [Boolean, String], required: true },
-})
 
-const checked = ref(false)
-function toggleCheck() {
-  checked.value = true
+const props = defineProps({
+  modelValue: { type: String, required: true },
+  name: { type: String, required: true },
+  option: { type: String, required: true },
+  value: { type: [String], required: true },
+})
+const emits = defineEmits(['update:modelValue'])
+
+const activeOption = ref(props.modelValue)
+
+function activate(option) {
+  emits('update:modelValue', option)
 }
 </script>
-<style></style>

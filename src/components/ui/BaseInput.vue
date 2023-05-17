@@ -15,7 +15,7 @@
       />
     </Field>
     <div class="relative">
-      <ErrorMessage :name="name" class="absolute text-[#F15524]"></ErrorMessage>
+      <ErrorMessage :name="name" class="absolute text-[#F15524] -top-2"></ErrorMessage>
     </div>
   </div>
 </template>
@@ -27,7 +27,7 @@ import { ErrorMessage, Field } from 'vee-validate'
 defineProps({
   placeholder: { type: String, required: false },
   name: { type: String, required: true },
-  rules: { type: String, required: true },
+  rules: { type: String, required: false },
   value: { type: String, required: true },
 })
 const slots = useSlots()

@@ -11,6 +11,13 @@ export default {
         lastName: '',
         email: '',
       },
+      condition: {
+        hadCovid: '',
+        hadTest: null,
+        sicknessDate: '',
+        testDate: '',
+        antibodyNumber: null,
+      },
     }
   },
   mutations,

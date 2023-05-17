@@ -1,39 +1,73 @@
 <template>
   <base-wrapper>
     <TheHeader>2/4</TheHeader>
-    <div class="flex gap-32">
-      <form class="mt-10 space-y-12 max-w-[575px]">
-        <covid-question question="გაქვს გადატანილი Covid-19?*">
-          <base-radio option="covid_yes" value="yes">კი</base-radio>
-          <base-radio option="covid_no" value="no">არა</base-radio>
-          <base-radio option="covid_now" value="have_right_now">ახლა მაქვს</base-radio>
-        </covid-question>
+    <Form @submit="onSubmit" v-slot="{ meta }">
+      <div class="flex">
+        <form class="mt-10 space-y-12 w-[575px]">
+          <covid-question question="გაქვს გადატანილი Covid-19?*">
+            <base-radio name="hadCovid" option="covid_yes" value="yes" v-model="hadCovid"
+              >კი</base-radio
+            >
+            <base-radio name="hadCovid" option="covid_no" value="no" v-model="hadCovid"
+              >არა</base-radio
+            >
+            <base-radio name="hadCovid" option="covid_now" value="have_right_now" v-model="hadCovid"
+              >ახლა მაქვს</base-radio
+            >
+          </covid-question>
+          <covid-question question="ანტისხეულების ტესტი გაქვს გაკეთებული?*" v-if="!!hadCovid">
+            <base-radio name="hadTest" option="test_yes" value="true" v-model="hadTest"
+              >კი</base-radio
+            >
+            <base-radio name="hadTest" option="test_no" value="false" v-model="hadTest"
+              >არა</base-radio
+            >
+          </covid-question>
 
-        <covid-question question="ანტისხეულების ტესტი გაქვს გაკეთებული?*">
-          <base-radio option="test_yes" :value="true">კი</base-radio>
-          <base-radio option="test_no" :value="false">არა</base-radio>
-        </covid-question>
-
-        <covid-question
-          question="თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და ანტისხეულების რაოდენობა*"
-        >
-          <BaseInput placeholder="რიცხვი"></BaseInput>
-          <BaseInput placeholder="ანტისხეულების რაოდენობა"></BaseInput>
-        </covid-question>
-      </form>
-      <section class="flex-shrink-0">
-        <div class="flex relative">
+          <covid-question
+            question="თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და ანტისხეულების რაოდენობა"
+            v-if="hadTest === 'true'"
+          >
+            <base-input
+              placeholder="რიცხვი"
+              name="testDate"
+              :value="testDate"
+              rules="date_format"
+            ></base-input>
+            <base-input
+              placeholder="ანტისხეულების რაოდენობა"
+              name="antibodyNumber"
+              :value="antibodyNumber"
+              rules="numeric"
+            ></base-input>
+          </covid-question>
+          <covid-question
+            question="მიუთითეთ მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა Covid-19*"
+            v-else
+          >
+            <base-input
+              placeholder="დდ/თთ/წწ"
+              name="sicknessDate"
+              :value="sicknessDate"
+              rules="required|date_format"
+            ></base-input>
+          </covid-question>
+          {{ meta }}
+        </form>
+        <section class="flex relative flex-shrink-0">
           <img :src="ConditionImage" alt="image" class="z-10" />
           <transition name="circle" appear>
             <img :src="CircleImage" alt="circle" class="absolute left-[80px] top-[260px]" />
           </transition>
-        </div>
-      </section>
-    </div>
-    <div class="absolute bottom-0 flex w-full justify-center items-center gap-28 pb-10 z-10">
-      <router-link :to="{ name: 'personal-information' }"><BackPage /></router-link>
-      <router-link :to="{ name: 'covid-vaccinated' }"><NextPage /></router-link>
-    </div>
+        </section>
+      </div>
+      <div class="absolute bottom-0 flex w-full justify-center items-center gap-28 pb-10 z-10">
+        <router-link :to="{ name: 'personal-information' }"><back-page /></router-link>
+        <button :disabled="!meta.valid">
+          <next-page :color="meta.valid ? '#232323' : '#8D8D8D'" />
+        </button>
+      </div>
+    </Form>
   </base-wrapper>
 </template>
 <script setup>
@@ -41,6 +75,26 @@ import TheHeader from '@/components/layout/TheHeader.vue'
 import CovidQuestion from '@/components/layout/CovidQuestion.vue'
 import ConditionImage from '@/assets/condition.png'
 import CircleImage from '@/assets/circle.png'
+import { Form } from 'vee-validate'
+import { ref } from 'vue'
+import store from '@/store'
+import { useRouter } from 'vue-router'
+import BaseInput from '@/components/ui/BaseInput.vue'
+
+const router = useRouter()
+const conditionData = store.getters['personal/condition']
+const hadCovid = ref(conditionData.hadCovid)
+const hadTest = ref(conditionData.hadTest)
+const sicknessDate = ref(conditionData.sicknessDate)
+const testDate = ref(conditionData.testDate)
+const antibodyNumber = ref(conditionData.antibodyNumber)
+
+function onSubmit(values) {
+  store.dispatch('personal/setCondition', values)
+  console.log(values)
+  localStorage.setItem('condition', JSON.stringify(values))
+  router.push('/vaccinated')
+}
 </script>
 <style scoped>
 .circle-enter-from {

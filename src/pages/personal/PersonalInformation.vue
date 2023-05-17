@@ -36,7 +36,7 @@
         </section>
       </div>
       <div class="relative w-full flex justify-center bottom-0 pb-10 z-10">
-        <button :disabled="!meta.valid" @click="meta.valid">
+        <button :disabled="!meta.valid">
           <next-page :color="meta.valid ? '#232323' : '#8D8D8D'" />
         </button>
       </div>
@@ -50,14 +50,15 @@ import RectangleImage from '@/assets/rectangle.png'
 import { Form } from 'vee-validate'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const router = useRouter()
 const store = useStore()
 const personalData = store.getters['personal/personal']
-const firstname = ref(personalData.firstname)
-const lastname = ref(personalData.lastname)
-const email = ref(personalData.email)
+const firstname = ref(personalData.firstname || '')
+const lastname = ref(personalData.lastname || '')
+const email = ref(personalData.email || '')
+
 function onSubmit(values) {
   store.dispatch('personal/setPersonal', values)
   localStorage.setItem('personal', JSON.stringify(values))
