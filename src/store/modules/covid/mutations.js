@@ -35,6 +35,5 @@ export default {
       meetingsLive: '',
       aboutUs: null,
     }
-    localStorage.clear()
   },
 }

@@ -108,7 +108,7 @@ const meetings = ref(policyData.meetings)
 const officeDays = ref(policyData.officeDays)
 const meetingsLive = ref(policyData.meetingsLive)
 const aboutUs = ref(policyData.aboutUs)
-const error = ref(false)
+const hasError = ref(false)
 
 async function onSubmit(values) {
   localStorage.setItem('policy', JSON.stringify(values))
@@ -116,9 +116,9 @@ async function onSubmit(values) {
     await store.dispatch('covid/sendAnswers')
   } catch (error) {
     console.error(error.message)
-    error.value = true
+    hasError.value = true
   }
-  if (!error.value) {
+  if (!hasError.value) {
     await router.push({ name: 'thank-you' })
   }
 }
