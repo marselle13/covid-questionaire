@@ -82,7 +82,7 @@
         <section class="flex-shrink-0">
           <div class="flex relative mt-14">
             <transition name="heart" appear>
-              <img :src="HeartImage" alt="heart" class="absolute left-[100px] top-[65px]" />
+              <HeartLogo :heart-color="heartColor" :heart="heart" />
             </transition>
             <img :src="PolicyImage" alt="image" class="z-10" />
           </div>
@@ -94,11 +94,11 @@
 <script setup>
 import TheHeader from '@/components/layout/TheHeader.vue'
 import PolicyImage from '@/assets/policy.png'
-import HeartImage from '@/assets/heart.png'
 import { ref } from 'vue'
 import { Form } from 'vee-validate'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import HeartLogo from '@/components/icons/HeartLogo.vue'
 
 const store = useStore()
 const router = useRouter()
@@ -109,19 +109,21 @@ const officeDays = ref(policyData.officeDays)
 const meetingsLive = ref(policyData.meetingsLive)
 const aboutUs = ref(policyData.aboutUs)
 const hasError = ref(false)
+const heart = ref(true)
+const heartColor = ref('#F39494')
 
 async function onSubmit(values) {
+  heartColor.value = '#000000'
   localStorage.setItem('policy', JSON.stringify(values))
   await store.dispatch('covid/setPolicy', values)
+  heart.value = false
   try {
     await store.dispatch('covid/sendAnswers')
   } catch (error) {
     console.error(error.message)
     hasError.value = true
   }
-  if (!hasError.value) {
-    await router.push({ name: 'thank-you' })
-  }
+  await router.push({ name: 'thank-you' })
 }
 </script>
 <style scoped>
@@ -131,7 +133,7 @@ async function onSubmit(values) {
 
 .heart-enter-from {
   opacity: 0;
-  transform: translateX(-30px) translateY(-60px);
+  transform: translateX(-30px) translateY(-60px) scale(1.2);
 }
 
 .heart-enter-active {
@@ -141,6 +143,21 @@ async function onSubmit(values) {
 
 .heart-enter-to {
   opacity: 1;
-  transform: scale(1.2);
+  transform: translate(0, 0) scale(1);
+}
+
+.heart-leave-from {
+  opacity: 1;
+  background-color: gray;
+}
+
+.heart-leave-active {
+  transition: all 0.3s ease-in;
+  transform-origin: center;
+}
+.heart-leave-to {
+  opacity: 0;
+  transform: scale(30);
+  background-color: gray;
 }
 </style>
