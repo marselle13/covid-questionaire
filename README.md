@@ -10,9 +10,9 @@ The Covid Questionnaire is an application that allows users to submit their answ
 
 ### Prerequisites
 
-* <img src="readme/assets/node.png" width="35" style="position: relative; top: 8px" /> *node@18.0 and up*
-* <img src="readme/assets/npm.png" width="35" style="position: relative; top: 8px" /> *npm@9.6 and up*
-* <img src="readme/assets/vite.png" width="35" style="position: relative; top: 8px" /> *vite@4.1 and up*
+* <img src="readme/assets/node.png"  height="30" style="position: relative; top: 8px" /> *node@18.0 and up*
+* <img src="readme/assets/npm.png" width="30" style="position: relative; top: 8px" /> *npm@9.6 and up*
+* <img src="readme/assets/vite.png" width="30" style="position: relative; top: 8px" /> *vite@4.1 and up*
 
 
 ### Tech Stack
