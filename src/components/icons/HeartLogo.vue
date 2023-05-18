@@ -26,7 +26,4 @@ const props = defineProps({
     required: true,
   },
 })
-onUpdated(() => {
-  console.log(props.heart)
-})
 </script>
