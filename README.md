@@ -19,6 +19,7 @@ The Covid Questionnaire is an application that allows users to submit their answ
 * <img src="readme/assets/vue.png" height="18" style="position: relative; top: 4px" /> [vue@3.x](https://vuejs.org/guide/introduction.html) - front-end framework
 * <img src="readme/assets/vuex.png" height="18" style="position: relative; top: 4px" /> [vuex@4.x](https://vuex.vuejs.org/) - Stage management tool
 * <img src="readme/assets/vue-route.png" height="18" style="position: relative; top: 4px" /> [vue route@4.x](https://router.vuejs.org/introduction.html) - routing library
+* <img src="readme/assets/validate.png" height="18" style="position: relative; top: 4px" /> [vee validate@4.x](https://vee-validate.logaretm.com/v4/guide/overview/) - Form validation library
 * <img src="readme/assets/tailwind.png" height="18" style="position: relative; top: 4px" /> [tailwind@3.3](https://tailwindcss.com/docs/guides/vite#vue) - CSS framework
 
 
