@@ -1,9 +1,6 @@
 <template>
   <div class="flex flex-col gap-3">
-    <label
-      class="text-[22px] leading-[27px] font-bold"
-      :for="name"
-      :class="{ 'sr-only': !hasContent }"
+    <label class="text-[22px] leading-[27px] font-bold" :for="name" v-if="hasContent"
       ><slot></slot
     ></label>
     <Field :value="value" :name="name" :rules="rules" v-slot="{ field }">
