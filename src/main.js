@@ -9,14 +9,24 @@ import BaseRadio from '@/components/ui/BaseRadio.vue'
 import BaseTextarea from '@/components/ui/BaseTextarea.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 
+import './config/vee-validate/rules'
+import './config/vee-validate/messages'
+import store from '@/store'
+import BackPage from '@/components/icons/BackPage.vue'
+import CovidQuestion from '@/components/layout/CovidQuestion.vue'
+
 const app = createApp(App)
 
 app.use(router)
+app.use(store)
+
 app.component('base-wrapper', BaseWrapper)
 app.component('base-input', BaseInput)
 app.component('base-radio', BaseRadio)
 app.component('base-textarea', BaseTextarea)
 app.component('base-button', BaseButton)
 app.component('next-page', NextPage)
+app.component('back-page', BackPage)
+app.component('covid-question', CovidQuestion)
 
 app.mount('#app')

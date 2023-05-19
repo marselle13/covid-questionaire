@@ -1,5 +1,10 @@
 <template>
   <svg width="18" height="23" viewBox="0 0 18 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M1 1L15 11.3158L1 21.6316" stroke="#232323" stroke-width="2.4" />
+    <path d="M1 1L15 11.3158L1 21.6316" :stroke="color" stroke-width="2.4" />
   </svg>
 </template>
+<script setup>
+defineProps({
+  color: { type: String, required: true },
+})
+</script>

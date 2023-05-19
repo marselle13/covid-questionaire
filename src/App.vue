@@ -5,6 +5,31 @@
     </transition>
   </router-view>
 </template>
+<script setup>
+import { onMounted } from 'vue'
+import { useStore } from 'vuex'
+
+const store = useStore()
+
+onMounted(() => {
+  const personalStorage = JSON.parse(localStorage.getItem('personal'))
+  if (personalStorage) {
+    store.commit('covid/setPersonal', personalStorage)
+  }
+  const conditionStorage = JSON.parse(localStorage.getItem('condition'))
+  if (conditionStorage) {
+    store.commit('covid/setCondition', conditionStorage)
+  }
+  const vaccinatedStorage = JSON.parse(localStorage.getItem('vaccinated'))
+  if (vaccinatedStorage) {
+    store.commit('covid/setVaccinated', vaccinatedStorage)
+  }
+  const policyStorage = JSON.parse(localStorage.getItem('policy'))
+  if (policyStorage) {
+    store.commit('covid/setPolicy', policyStorage)
+  }
+})
+</script>
 <style>
 .route-enter-from,
 .route-leave-to {
