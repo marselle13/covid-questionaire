@@ -4,7 +4,11 @@
     <Form @submit="onSubmit" v-slot="{ meta }">
       <div class="flex gap-32">
         <div class="mt-10 w-1/3 space-y-12 flex-shrink-0">
-          <base-input rules="required|min:2" placeholder="იოსებ" name="firstname" :value="firstname"
+          <base-input
+            rules="required|min:2|alpha_spaces"
+            placeholder="იოსებ"
+            name="firstname"
+            :value="firstname"
             >სახელი*</base-input
           >
           <base-input

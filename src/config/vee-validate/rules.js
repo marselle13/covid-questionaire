@@ -1,10 +1,11 @@
 import { defineRule } from 'vee-validate'
-import { required, email, min, numeric } from '@vee-validate/rules' // npm install @vee-validate/rules
+import { required, email, min, numeric, alpha_spaces, alpha } from '@vee-validate/rules' // npm install @vee-validate/rules
 
 defineRule('required', required)
 defineRule('email', email)
 defineRule('min', min)
 defineRule('numeric', numeric)
+defineRule('alpha', alpha)
 
 defineRule('redberry_email', (value) => {
   const regexEmail = /@redberry\.ge/

@@ -10,6 +10,7 @@ configure({
       redberry_email: 'გთხოვთ დარეგისტრირდეთ Redberry-ს მეილით (youremail@redberry.ge)',
       date_format: 'არასწორი თარიღის ფორმატი',
       numeric: 'მხოლოდ რიცხვი',
+      alpha: '{field}ს ველი უნდა შეიცავდეს მხოლოდ ანბანის ასოებს',
     },
     names: {
       firstname: 'სახელი',
