@@ -27,7 +27,6 @@ export default {
       last_name: lastname,
       email: email,
       had_covid: hadCovid,
-      had_antibody_test: hadTest === 'true',
       had_vaccine: hadVaccine === 'true',
       non_formal_meetings: meetings,
       number_of_days_from_office: +officeDays,
@@ -35,12 +34,14 @@ export default {
       tell_us_your_opinion_about_us: aboutUs,
     }
 
-    if (hadTest === 'true') {
+    if (hadCovid === 'yes' && hadTest === 'true') {
+      covidData.had_antibody_test = hadTest === 'true'
       covidData.antibodies = {
         test_date: reverseTestDate,
         number: +antibodyNumber,
       }
-    } else {
+    } else if (hadCovid === 'yes' && hadTest === 'false') {
+      covidData.had_antibody_test = hadTest === 'true'
       covidData.covid_sickness_date = reverseSicknessDate
     }
 

@@ -71,6 +71,7 @@
             >
               <base-textarea name="aboutUs" :value="aboutUs"></base-textarea>
             </covid-question>
+            <p class="text-red-500">{{ hasError }}</p>
             <div class="relative justify-end flex flex-col gap-4">
               <base-button class="w-1/3 ml-auto">დასრულება</base-button>
             </div>
@@ -108,7 +109,7 @@ const meetings = ref(policyData.meetings)
 const officeDays = ref(policyData.officeDays)
 const meetingsLive = ref(policyData.meetingsLive)
 const aboutUs = ref(policyData.aboutUs)
-const hasError = ref(false)
+const hasError = ref(null)
 const heart = ref(true)
 const heartColor = ref('#F39494')
 
@@ -121,9 +122,11 @@ async function onSubmit(values) {
     await store.dispatch('covid/sendAnswers')
   } catch (error) {
     console.error(error.message)
-    hasError.value = true
+    hasError.value = 'ინფორმაცის გაგზავნა ვერ მოხერხდა,გადამოწმეთ ფორმის ველები'
   }
-  await router.push({ name: 'thank-you' })
+  if (!hasError.value) {
+    await router.push({ name: 'thank-you' })
+  }
 }
 </script>
 <style scoped>
