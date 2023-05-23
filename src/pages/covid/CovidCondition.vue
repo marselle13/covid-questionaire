@@ -13,13 +13,16 @@
               >ახლა მაქვს</base-radio
             >
           </covid-question>
-          <covid-question question="ანტისხეულების ტესტი გაქვს გაკეთებული?*" v-if="!!hadCovid">
+          <covid-question
+            question="ანტისხეულების ტესტი გაქვს გაკეთებული?*"
+            v-if="hadCovid === 'yes'"
+          >
             <base-radio name="hadTest" id="test_yes" value="true" v-model="hadTest">კი</base-radio>
             <base-radio name="hadTest" id="test_no" value="false" v-model="hadTest">არა</base-radio>
           </covid-question>
           <covid-question
             question="თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და ანტისხეულების რაოდენობა"
-            v-if="hadTest === 'true'"
+            v-if="hadTest === 'true' && hadCovid === 'yes'"
           >
             <base-input
               placeholder="რიცხვი"
@@ -36,7 +39,7 @@
           </covid-question>
           <covid-question
             question="მიუთითეთ მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა Covid-19*"
-            v-if="hadTest === 'false'"
+            v-if="hadTest === 'false' && hadCovid === 'yes'"
           >
             <base-input
               placeholder="დდ/თთ/წწ"
