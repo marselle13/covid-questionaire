@@ -27,13 +27,13 @@
             <base-input
               placeholder="რიცხვი"
               name="testDate"
-              :value="testDate"
+              v-model="testDate"
               rules="date_format"
             ></base-input>
             <base-input
               placeholder="ანტისხეულების რაოდენობა"
               name="antibodyNumber"
-              :value="antibodyNumber"
+              v-model="antibodyNumber"
               rules="numeric"
             ></base-input>
           </covid-question>
@@ -44,7 +44,7 @@
             <base-input
               placeholder="დდ/თთ/წწ"
               name="sicknessDate"
-              :value="sicknessDate"
+              v-model="sicknessDate"
               rules="required|date_format"
             ></base-input>
           </covid-question>
