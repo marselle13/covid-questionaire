@@ -8,21 +8,21 @@
             rules="required|min:2|alpha"
             placeholder="იოსებ"
             name="firstname"
-            :value="firstname"
+            v-model="firstname"
             >სახელი*</base-input
           >
           <base-input
             rules="required|min:2|alpha"
             placeholder="ჯუღაშვილი"
             name="lastname"
-            :value="lastname"
+            v-model="lastname"
             >გვარი*</base-input
           >
           <base-input
             rules="required|email|redberry_email"
             placeholder="fbi@redberry.ge"
             name="email"
-            :value="email"
+            v-model="email"
             >მეილი*</base-input
           >
           <div class="pt-12 w-1/2 space-y-5">

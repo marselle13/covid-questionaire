@@ -64,12 +64,12 @@
               >
             </covid-question>
             <covid-question question="რას ფიქრობ ფიზიკურ შეკრებებზე?">
-              <base-textarea name="meetingsLive" :value="meetingsLive"></base-textarea>
+              <base-textarea name="meetingsLive" v-model="meetingsLive"></base-textarea>
             </covid-question>
             <covid-question
               question="რას ფიქრობ არსებულ გარემოზე: რა მოგწონს, რას დაამატებდი, რას შეცვლიდი?"
             >
-              <base-textarea name="aboutUs" :value="aboutUs"></base-textarea>
+              <base-textarea name="aboutUs" v-model="aboutUs"></base-textarea>
             </covid-question>
             <p class="text-red-500">{{ hasError }}</p>
             <div class="relative justify-end flex flex-col gap-4">
